@@ -8,6 +8,11 @@ public class WingWedgeManager : MonoBehaviour
     public static WingWedgeManager instance;
     public GameObject[] WWDisplays;
     public int maxWingWedges = 4;
+    public float scaleIncrease = 3;
+
+    private RectTransform rectTransform;
+    private Vector3 baseScale;
+    private Vector3 chargeScale;
 
     private int _ww;
     public int WingWedges 
@@ -29,6 +34,10 @@ public class WingWedgeManager : MonoBehaviour
             }
         }
     }
+
+    private float chargingCounter = 0;
+    public int playerChargeSpeed = 10;
+    public bool isCharging = false;
     
     // Start is called before the first frame update
     void Start()
@@ -46,6 +55,9 @@ public class WingWedgeManager : MonoBehaviour
             g.SetActive(false);
         }
         _ww = maxWingWedges;
+        rectTransform = GetComponent<RectTransform>();
+        baseScale = rectTransform.localScale;
+        chargeScale = baseScale * scaleIncrease;
     }
 
     // Update is called once per frame
@@ -63,5 +75,15 @@ public class WingWedgeManager : MonoBehaviour
             }
 
         }
+        
+        if (isCharging)
+        {
+            rectTransform.localScale = chargeScale;
+        }
+        else
+        {
+            rectTransform.localScale = baseScale;
+        }
     }
+    
 }

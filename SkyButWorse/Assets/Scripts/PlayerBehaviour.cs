@@ -70,20 +70,9 @@ public class PlayerBehavior : MonoBehaviour
 
         if (isCharging)
         {
-            //this is repetition but whatevs
-            if (ChargingIndicator == null) 
-            {
-            Debug.Log("No charging indicator assigned");
-            }
-            else
-            {
-                //ChargingIndicator.SetActive(true);
-            }
-
-            //_meshRenderer.material = chargeMaterial;
             normalMaterial.color = chargeColour;
-            
-            if(chargingCounter >= 1)
+            WingWedgeManager.instance.isCharging = true;
+             if(chargingCounter >= 1)
             {
                 chargingCounter = 0f;
                 WingWedgeManager.instance.WingWedges++;
@@ -97,14 +86,7 @@ public class PlayerBehavior : MonoBehaviour
         {
             //_meshRenderer.material = normalMaterial;
             normalMaterial.color = normalColour;
-               if (ChargingIndicator == null) 
-            {
-            Debug.Log("No charging indicator assigned");
-            }
-            else
-            {
-                //ChargingIndicator.SetActive(false);
-            }
+            WingWedgeManager.instance.isCharging = false;
         }
 
     }
